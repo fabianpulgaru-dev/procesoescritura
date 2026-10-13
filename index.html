@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6e46b4">
+<title>EN RUTA · Mentoría de escritura con Javier</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+:root{
+ --violet:#6e46b4;--violet-dark:#40216f;--lime:#adc749;--yellow:#ecc759;
+ --ink:#241d39;--muted:#6d6680;--bg:#f7f5fc;--edge:#eae5f3;--paper:#fff;
+ --lav:#efe9fb;--greenbg:#f3f8e3;--yellowbg:#fff8e2;--shadow:0 18px 50px #3e287514
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--ink)}
+button,input,textarea{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.shell{max-width:1180px;margin:auto;min-height:100vh;padding:22px 20px 38px}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:11px;font-family:Outfit,sans-serif;font-size:23px;font-weight:900;letter-spacing:-1px}
+.brandmark{width:42px;height:42px;background:var(--violet);border-radius:14px;display:grid;place-items:center;color:#fff;font-size:21px;transform:rotate(-8deg)}
+.brand small{display:block;font:700 11px 'DM Sans';color:var(--muted);letter-spacing:.55px}
+.prototype{font-size:12px;border:1px solid var(--edge);padding:8px 13px;border-radius:999px;background:#fff;color:var(--muted)}
+.hero{background:var(--violet);color:#fff;border-radius:31px;padding:35px 40px;position:relative;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px}
+.hero:before{content:'';position:absolute;width:300px;height:300px;border:48px solid #ffffff15;border-radius:50%;right:-80px;top:-145px}
+.hero:after{content:'✳';position:absolute;right:54px;bottom:-94px;color:var(--lime);font-size:225px;line-height:1;transform:rotate(-14deg)}
+.hero>div{position:relative;z-index:1;max-width:760px}.eyebrow{font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:11px}
+.hero h1{font:900 clamp(40px,5vw,67px)/1 Outfit,sans-serif;letter-spacing:-2.3px;margin:13px 0}
+.hero p{max-width:650px;line-height:1.65;font-size:16.5px;color:#ffffffee}.highlight{color:#d8ee70}
+.main{display:grid;grid-template-columns:245px minmax(0,1fr);gap:20px;align-items:start}
+.side{background:#fff;border:1px solid var(--edge);padding:20px;border-radius:24px;position:sticky;top:18px;box-shadow:var(--shadow)}
+.side h3{font:850 22px Outfit;margin:7px 0 15px}.side .pill{margin-bottom:3px}
+.stepitem{width:100%;border:0;background:transparent;text-align:left;padding:12px;border-radius:13px;display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px;font-weight:700}
+.stepitem i{font-style:normal;border-radius:50%;width:25px;height:25px;display:grid;place-items:center;background:var(--bg);flex-shrink:0}
+.stepitem.active{background:#f1ebfd;color:var(--violet-dark)}.stepitem.active i{background:var(--violet);color:#fff}.stepitem:hover{background:#f7f3fc}
+.mini{margin-top:15px;background:#f4f8e6;padding:15px;border-radius:17px;font-size:12.5px;color:#526026;line-height:1.55}
+.screen{background:#fff;border:1px solid var(--edge);border-radius:26px;box-shadow:var(--shadow);padding:30px;min-height:530px}
+.stage{animation:fadeUp .25s ease both}@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.pill{display:inline-flex;padding:7px 11px;background:#f0e9fa;color:var(--violet);font-size:12px;font-weight:800;border-radius:100px}
+.screen h2{font:900 clamp(30px,4vw,44px)/1.08 Outfit;letter-spacing:-1.2px;margin:16px 0 10px}
+.screen .lead{font-size:15.5px;color:var(--muted);max-width:720px;line-height:1.65}
+.progress{height:9px;background:#ece6f6;border-radius:99px;overflow:hidden;margin:0 0 20px}.progress>div{height:100%;background:var(--lime);transition:width .3s ease}
+.card{border:1px solid var(--edge);border-radius:21px;padding:20px;margin:16px 0;background:#fff}
+.card h3{font:850 21px Outfit;margin:0 0 8px}.card p{line-height:1.58;color:var(--muted)}
+.promptbox{padding:19px;border-radius:19px;background:#f4f0fb;border-left:5px solid var(--violet);margin:17px 0;line-height:1.65}
+.promptbox h3{margin:0 0 7px;font:850 18px Outfit}.question{background:#f7f4fd;padding:21px;border-radius:21px;border:1px solid #e9def8}
+.question .big{font:850 23px/1.2 Outfit;margin:8px 0 4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.field{display:block;margin:13px 0}.field>span{display:block;font-weight:800;margin-bottom:7px;font-size:13px}
+.field input,.field textarea{width:100%;border:1.5px solid #d8ccec;border-radius:14px;padding:12px 13px;color:var(--ink);background:#fff}
+.field textarea{min-height:88px;resize:vertical;line-height:1.5}.field input:focus,.field textarea:focus{border-color:var(--violet)}
+.actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}.btn{display:inline-flex;justify-content:center;align-items:center;gap:7px;padding:11px 16px;border-radius:13px;border:0;font-weight:800;text-decoration:none}
+.primary{background:var(--violet);color:#fff}.secondary{background:#f2edfb;color:var(--violet-dark)}.green{background:var(--lime);color:#263015}.yellow{background:var(--yellowbg);color:#755d1d}.link{background:#eef4f5;color:#426773}
+.reveal{display:none;margin-top:13px;border-radius:16px;padding:15px;line-height:1.58;font-size:14px}.reveal.show{display:block}.hintbox{background:var(--yellowbg);border:1px solid #f0e0ad}.solbox{background:#f3edfc;border:1px solid #ddcff2}.checkbox{background:var(--greenbg);border:1px solid #dce9b7}
+.insight{background:var(--greenbg);border:1px solid #dce9b7;border-radius:16px;padding:16px;margin-top:14px}.insight b{color:#4d5e20}
+.query{font-family:ui-monospace,Menlo,monospace;background:#f5f2f9;border:1px solid #ebe3f5;border-radius:10px;padding:8px 10px;font-size:12px;margin:6px 0}
+.source{border:1px solid var(--edge);padding:16px;border-radius:18px;background:#fbfafc;margin:11px 0}.source small{display:block;color:var(--violet);font-weight:850;text-transform:uppercase;letter-spacing:.5px}.source h4{font:800 17px Outfit;margin:7px 0}.source p{font-size:13px;line-height:1.55;margin:0 0 10px}
+.note{background:#fff8e2;border:1px solid #f0e0ad;padding:15px;border-radius:14px;margin-top:14px;font-size:13.5px;line-height:1.58}
+table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--edge);border-radius:15px}th,td{padding:10px;border-bottom:1px solid var(--edge);vertical-align:top;text-align:left;font-size:13px;line-height:1.45}th{background:#f4f0fb}tr:last-child td{border-bottom:0}
+.arch{display:grid;grid-template-columns:155px 1fr 1fr;gap:8px;margin:8px 0}.arch>div{border:1px solid var(--edge);border-radius:12px;padding:9px}.arch .name{background:#fff8e2;font-weight:800}
+.check-row{background:#fff;border:1px solid var(--edge);border-radius:15px;padding:13px;margin:9px 0}.check-row label{display:flex;gap:9px;align-items:flex-start;font-weight:700}.check-row input{width:19px;height:19px;accent-color:var(--violet);flex:none}
+.route-nav{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:27px;padding-top:18px;border-top:1px solid var(--edge)}
+.route-nav span{font-size:12px;color:var(--muted)}
+.teacher{position:fixed;right:18px;bottom:18px;z-index:30}.teacher button.fab{border:0;border-radius:999px;background:var(--violet-dark);color:#fff;padding:11px 15px;font-weight:850;box-shadow:var(--shadow)}
+.teacherbox{display:none;position:absolute;right:0;bottom:50px;width:250px;background:#fff;border:1px solid var(--edge);border-radius:17px;padding:13px;box-shadow:0 18px 50px #3e287530}.teacherbox.show{display:block}
+.footer{text-align:center;margin-top:28px;font-size:13px;color:var(--muted)}
+@media(max-width:820px){.main{grid-template-columns:1fr}.side{position:static}.grid2,.grid3,.arch{grid-template-columns:1fr}.hero{padding:28px 25px}.hero:after{right:-35px;font-size:180px;opacity:.5}}
+
+.search-map{display:grid;gap:10px;margin:16px 0}
+.search-step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;border:1px solid var(--edge);border-radius:17px;padding:14px;background:#fff}
+.search-step .num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--lav);color:var(--violet);font-weight:900}
+.search-step h4{font:800 16px Outfit;margin:2px 0 5px}
+.search-step p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.search-step .actions{margin-top:9px}
+.keyword-box{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:11px 0}
+.keyword-col{background:#fbfafc;border:1px solid var(--edge);border-radius:15px;padding:13px}
+.keyword-col b{display:block;margin-bottom:7px}
+.result-path{background:linear-gradient(135deg,#f3edfc,#f5f9e8);border:1px solid #e0d6ee;border-radius:18px;padding:17px;margin:13px 0}
+.result-path h4{font:850 18px Outfit;margin:0 0 7px}
+.result-path ol{margin:9px 0 0;padding-left:19px}.result-path li{margin:7px 0;line-height:1.45;font-size:13px}
+.academic-check{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:11px 0}
+.academic-check div{background:#f7f4fd;border:1px solid #e9def8;border-radius:13px;padding:10px;font-size:12.5px;line-height:1.4}
+.reading-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:11px}
+.reading-strip div{background:#fff8e2;border:1px solid #f0e0ad;border-radius:12px;padding:10px;font-size:12px}
+@media(max-width:700px){.keyword-box,.academic-check,.reading-strip{grid-template-columns:1fr}.search-step{grid-template-columns:34px 1fr}}
+
+
+/* Firebase / sincronización */
+.cloud-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sync-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;font-size:11px;font-weight:800;border:1px solid var(--edge);background:#fff;color:var(--muted)}
+.sync-pill:before{content:'';width:8px;height:8px;border-radius:50%;background:#b8afc5}
+.sync-pill.cloud{background:#f3f8e3;color:#526026;border-color:#dce9b7}.sync-pill.cloud:before{background:var(--lime)}
+.sync-pill.saving{background:#fff8e2;color:#755d1d;border-color:#f0e0ad}.sync-pill.saving:before{background:var(--yellow)}
+.sync-pill.error{background:#fff1f1;color:#8d3e48;border-color:#f0cbd0}.sync-pill.error:before{background:#c86c78}
+.user-chip{display:none;align-items:center;gap:8px;padding:6px 9px 6px 7px;background:#fff;border:1px solid var(--edge);border-radius:999px;font-size:11px;font-weight:750;color:var(--muted)}
+.user-chip.show{display:flex}.avatar{width:27px;height:27px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center;font-weight:900}
+.logout-mini{border:0;background:#f2edfb;color:var(--violet-dark);border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800}
+.login-screen{position:fixed;inset:0;z-index:1000;background:rgba(36,29,57,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px}
+.login-screen.hidden{display:none}
+.login-card{width:min(520px,100%);background:#fff;border-radius:28px;padding:31px;box-shadow:0 30px 90px #241d3950;border:1px solid #ffffff80}
+.login-mark{width:54px;height:54px;border-radius:17px;background:var(--violet);color:#fff;display:grid;place-items:center;font-size:27px;transform:rotate(-7deg);margin-bottom:18px}
+.login-card h2{font:900 35px/1.05 Outfit;margin:0 0 10px;letter-spacing:-1px}
+.login-card p{color:var(--muted);line-height:1.6}
+.login-note{background:var(--greenbg);border:1px solid #dce9b7;padding:13px;border-radius:14px;font-size:12px;line-height:1.5;margin:15px 0}
+.login-error{display:none;background:#fff1f1;border:1px solid #f0cbd0;color:#8d3e48;border-radius:13px;padding:11px;font-size:12px;margin-top:11px}
+.login-error.show{display:block}
+@media(max-width:700px){.mast{align-items:flex-start}.cloud-tools{justify-content:flex-end}.prototype{display:none}.user-chip span.username{display:none}}
+
+</style>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-mark">✳</div>
+    <span class="pill">Mentoría académica · Firebase</span>
+    <h2>Tu trabajo quedará<br>guardado en la nube.</h2>
+    <p>Inicia sesión con Google para cargar el avance anterior y guardar automáticamente cada respuesta de esta mentoría.</p>
+    <div class="login-note"><b>Sincronización automática:</b> respuestas, casillas de revisión y etapa actual se guardan en Firebase Realtime Database. El navegador conserva además una copia temporal de respaldo.</div>
+    <button class="btn green" style="width:100%" type="button" onclick="loginGoogle()">Continuar con Google</button>
+    <div class="login-error" id="loginError"></div>
+    <p style="font-size:11px;margin:14px 0 0">La autenticación debe abrirse desde un dominio autorizado en tu proyecto Firebase (por ejemplo, tu sitio publicado).</p>
+  </div>
+</div>
+
+<div class="shell">
+<header class="mast">
+  <div class="brand"><span class="brandmark">✳</span><div>EN RUTA<small>MENTORÍA DE ESCRITURA · JAVIER</small></div></div>
+  <div class="cloud-tools">
+  <span class="sync-pill" id="syncStatus">Conectando…</span>
+  <div class="user-chip" id="userChip"><span class="avatar" id="userAvatar">FP</span><span class="username" id="userLabel">Usuario</span><button class="logout-mini" type="button" onclick="logoutFirebase()">Salir</button></div>
+  <div class="prototype">Proceso de escritura · 60 minutos</div>
+</div>
+</header>
+
+<section class="hero"><div>
+  <span class="eyebrow">Mentoría académica situada</span>
+  <h1>Del encargo<br><span class="highlight">al texto.</span></h1>
+  <p>Vamos a recorrer un proceso completo de escritura: <b>Acceso, Planificación, Escritura y Revisión</b>. No buscamos terminar un ensayo, sino aprender a tomar decisiones que después puedas transferir a tus trabajos reales.</p>
+</div></section>
+
+<div class="main">
+<aside class="side">
+  <span class="pill">Ruta de trabajo</span>
+  <h3>Proceso de escritura</h3>
+  <button class="stepitem active" data-step="0" onclick="go(0)"><i>1</i>Acceso</button>
+  <button class="stepitem" data-step="1" onclick="go(1)"><i>2</i>Planificación</button>
+  <button class="stepitem" data-step="2" onclick="go(2)"><i>3</i>Escritura</button>
+  <button class="stepitem" data-step="3" onclick="go(3)"><i>4</i>Revisión</button>
+  <div class="mini"><b>Tiempo sugerido</b><br>Acceso · 20 min<br>Planificación · 20 min<br>Escritura · 15 min<br>Revisión · 5 min</div>
+</aside>
+
+<section class="screen">
+<div class="progress"><div id="progress" style="width:25%"></div></div>
+
+<!-- ACCESO -->
+<div class="stage phase" id="phase0">
+<span class="pill">01 · Acceso</span>
+<h2>Antes de escribir,<br>hay que construir el problema.</h2>
+<p class="lead">Comprenderemos la consigna, reconoceremos el género, activaremos lo que ya sabemos y buscaremos solo las fuentes que realmente necesitamos.</p>
+
+<div class="card">
+<h3>La consigna</h3>
+<div class="promptbox">
+Elabora un ensayo crítico de entre 2.000 y 2.500 palabras en el que analices de qué manera la saga <i>Harry Potter</i> representa la construcción de la identidad a partir de la tensión entre herencia, pertenencia y elección personal. Formula una hipótesis interpretativa propia y desarrolla al menos tres argumentos diferenciados que permitan examinar cómo los personajes negocian aquello que reciben de su historia familiar, de las instituciones a las que pertenecen y de las decisiones que toman a lo largo de la narración. Selecciona al menos tres personajes y sustenta tus argumentos mediante escenas, acontecimientos o fragmentos específicos. Incorpora además dos fuentes académicas, explicando qué función cumple cada una. Evita organizar el ensayo como una descripción independiente de cada personaje: los casos seleccionados deben ponerse en relación para sostener una interpretación común. Finaliza evaluando en qué medida la saga presenta la identidad como algo heredado, impuesto o construido a través de las decisiones.
+</div>
+</div>
+
+<div class="card">
+<h3>1 · Desarmar la consigna</h3>
+<div class="grid2">
+<label class="field"><span>Producto / género</span><input data-save="a1" placeholder="¿Qué texto debo producir?"></label>
+<label class="field"><span>Operación principal</span><input data-save="a2" placeholder="¿Qué acción organiza la tarea?"></label>
+<label class="field"><span>Operaciones subordinadas</span><textarea data-save="a3"></textarea></label>
+<label class="field"><span>Objeto de análisis</span><textarea data-save="a4"></textarea></label>
+<label class="field"><span>Fuentes / evidencias</span><textarea data-save="a5"></textarea></label>
+<label class="field"><span>Restricciones</span><textarea data-save="a6"></textarea></label>
+</div>
+<label class="field"><span>¿Qué debería quedar demostrado al final?</span><textarea data-save="a7"></textarea></label>
+<div class="actions"><button class="btn yellow" onclick="toggle('h1')">Pista</button><button class="btn secondary" onclick="toggle('s1')">Mostrar resolución</button><button class="btn green" onclick="toggle('c1')">Comprobar</button></div>
+<div id="h1" class="reveal hintbox"><b>Pista:</b> “identidad en Harry Potter” es el tema. La operación es lo que debes hacer con ese tema.</div>
+<div id="s1" class="reveal solbox"><b>Producto:</b> ensayo crítico de análisis literario.<br><b>Operación principal:</b> analizar cómo la saga construye la identidad.<br><b>Subordinadas:</b> formular hipótesis, seleccionar personajes, comparar trayectorias, analizar escenas, integrar fuentes y evaluar la relación entre herencia, pertenencia y elección.<br><b>Restricción clave:</b> no organizar por personajes aislados.<br><b>Resultado:</b> sostener una interpretación sobre cómo se construye la identidad en la saga.</div>
+<div id="c1" class="reveal checkbox">¿Identificaste producto, acción principal, varias acciones subordinadas, una restricción estructural y un resultado interpretativo?</div>
+</div>
+
+<div class="card">
+<h3>2 · Reconocer el género discursivo</h3>
+<p>Antes de planificar debemos saber qué hace un <b>ensayo crítico de análisis literario</b>.</p>
+<div class="grid2">
+<label class="field"><span>¿Cuál es su propósito?</span><textarea data-save="g1"></textarea></label>
+<label class="field"><span>¿Qué relación establece con la obra?</span><textarea data-save="g2"></textarea></label>
+<label class="field"><span>¿Qué función cumplen las fuentes?</span><textarea data-save="g3"></textarea></label>
+<label class="field"><span>¿Cómo se organiza?</span><textarea data-save="g4"></textarea></label>
+</div>
+<label class="field"><span>¿Qué NO deberíamos producir?</span><textarea data-save="g5"></textarea></label>
+<div class="actions"><button class="btn yellow" onclick="toggle('h2')">Pista</button><button class="btn secondary" onclick="toggle('s2')">Mostrar resolución</button><button class="btn green" onclick="toggle('c2')">Comprobar</button></div>
+<div id="h2" class="reveal hintbox">Piensa en cuatro palabras: <b>interpretación · evidencia · argumento · diálogo</b>.</div>
+<div id="s2" class="reveal solbox"><table><tr><th>Dimensión</th><th>Qué hace</th></tr><tr><td>Propósito</td><td>Sostiene una interpretación.</td></tr><tr><td>Obra</td><td>Se analiza como evidencia; no se resume.</td></tr><tr><td>Fuentes</td><td>Permiten conceptualizar, contrastar o complejizar.</td></tr><tr><td>Organización</td><td>Argumentos orientados por una hipótesis.</td></tr></table><p><b>No es:</b> resumen de la saga, descripción de personajes, opinión sin evidencia o acumulación de citas.</p></div>
+<div id="c2" class="reveal checkbox">Tu definición debería ayudarte a anticipar <b>cómo escribir</b>, no solo a nombrar el género.</div>
+</div>
+
+<div class="card">
+<h3>3 · Activar conocimientos</h3>
+<p>Antes de buscar bibliografía, recuperemos material de la saga.</p>
+<div class="grid3">
+<label class="field"><span>Herencia</span><textarea data-save="k1" placeholder="Familias, linajes, reputaciones..."></textarea></label>
+<label class="field"><span>Pertenencia</span><textarea data-save="k2" placeholder="Casas, grupos, instituciones..."></textarea></label>
+<label class="field"><span>Elección</span><textarea data-save="k3" placeholder="Decisiones, rupturas, cambios..."></textarea></label>
+</div>
+<div class="actions"><button class="btn yellow" onclick="toggle('h3')">Pista</button><button class="btn secondary" onclick="toggle('s3')">Mostrar posibilidades</button></div>
+<div id="h3" class="reveal hintbox">Busca personajes que respondan de manera distinta frente al mismo problema.</div>
+<div id="s3" class="reveal solbox"><b>Herencia:</b> Potter, Malfoy, Black; linaje y reputación.<br><b>Pertenencia:</b> Gryffindor, Slytherin, amistades, Mortífagos, Orden del Fénix.<br><b>Elección:</b> Harry rechazando Slytherin, Sirius rompiendo con los Black, Draco frente a su familia, Snape y sus decisiones.</div>
+</div>
+
+<div class="card">
+<h3>4 · Buscar y seleccionar fuentes académicas</h3>
+<p>En esta actividad no conocemos de antemano la fuente ni el autor al que queremos llegar. Vamos a <b>descubrir palabras clave durante la búsqueda</b> y a refinar progresivamente el problema.</p>
+
+<div class="insight">
+<b>Idea central de la estrategia</b><br>
+No se trata de “adivinar” las palabras correctas desde el principio. La búsqueda académica avanza así:<br><br>
+<b>problema → conceptos iniciales → primera búsqueda → lectura de resultados → nuevas palabras clave → búsqueda refinada → selección de fuentes</b>
+</div>
+
+<div class="question" style="margin-top:18px">
+<span class="pill">Punto de partida</span>
+<div class="big">¿Qué necesitamos investigar?</div>
+<p>Queremos analizar cómo se construye la identidad de los personajes de <i>Harry Potter</i>, especialmente en relación con lo que heredan, los grupos a los que pertenecen y las decisiones que toman.</p>
+</div>
+
+<div class="search-map">
+
+  <div class="search-step">
+    <div class="num">1</div>
+    <div>
+      <h4>Traducir el problema en conceptos amplios</h4>
+      <p>Antes de abrir Google Scholar, reducimos la consigna a algunas ideas centrales. Todavía <b>no conocemos el vocabulario teórico especializado</b>.</p>
+
+      <div class="keyword-box">
+        <div class="keyword-col">
+          <b>Conceptos iniciales en español</b>
+          <div class="query">Harry Potter</div>
+          <div class="query">identidad</div>
+          <div class="query">personajes</div>
+          <div class="query">pertenencia</div>
+          <div class="query">elección</div>
+        </div>
+        <div class="keyword-col">
+          <b>Conceptos iniciales en inglés</b>
+          <div class="query">Harry Potter</div>
+          <div class="query">identity</div>
+          <div class="query">characters</div>
+          <div class="query">belonging</div>
+          <div class="query">choice</div>
+        </div>
+      </div>
+
+      <div class="note"><b>Lo que modelamos:</b> partimos con palabras que provienen de la propia consigna y de lo que ya sabemos del problema.</div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">2</div>
+    <div>
+      <h4>Primera búsqueda: todavía amplia</h4>
+      <p>Probamos una combinación simple para saber cómo se habla académicamente de este problema.</p>
+
+      <div class="keyword-box">
+        <div class="keyword-col">
+          <b>Español</b>
+          <div class="query">"Harry Potter" identidad personajes</div>
+          <div class="actions">
+            <a class="btn primary" target="_blank" href="https://scholar.google.com/scholar?q=%22Harry+Potter%22+identidad+personajes">Abrir en Google Scholar ↗</a>
+          </div>
+        </div>
+        <div class="keyword-col">
+          <b>Inglés</b>
+          <div class="query">"Harry Potter" identity characters</div>
+          <div class="actions">
+            <a class="btn secondary" target="_blank" href="https://scholar.google.com/scholar?q=%22Harry+Potter%22+identity+characters">Abrir en Google Scholar ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>¿Qué palabras o expresiones nuevas aparecen en los títulos y resúmenes?</span>
+        <textarea data-save="search1" placeholder="Anota términos que podrían ayudarnos a precisar la búsqueda..."></textarea>
+      </label>
+
+      <div class="actions">
+        <button class="btn yellow" onclick="toggle('search1hint')">Pista</button>
+        <button class="btn secondary" onclick="toggle('search1sol')">Mostrar posibles hallazgos</button>
+      </div>
+
+      <div id="search1hint" class="reveal hintbox">
+        No busques todavía “la fuente correcta”. Mira los resultados como si fueran un <b>mapa de vocabulario académico</b>. ¿Qué palabras se repiten?
+      </div>
+
+      <div id="search1sol" class="reveal solbox">
+        Podrían aparecer expresiones como <b>identity construction</b>, <b>subjectivity</b>, <b>dialogic identity</b>, <b>narrative identity</b>, <b>belonging</b> o <b>character development</b>. No necesitamos encontrarlas todas: basta con identificar una o dos que nos permitan refinar.
+      </div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">3</div>
+    <div>
+      <h4>Refinar la búsqueda con el vocabulario que apareció</h4>
+      <p>Ahora mejoramos la búsqueda. Ya no usamos solo palabras de la consigna: incorporamos términos que descubrimos en los resultados.</p>
+
+      <div class="keyword-box">
+        <div class="keyword-col">
+          <b>Español</b>
+          <div class="query">"Harry Potter" "construcción de la identidad"</div>
+          <div class="query">"Harry Potter" identidad subjetividad</div>
+          <div class="query">"Harry Potter" identidad narrativa</div>
+        </div>
+        <div class="keyword-col">
+          <b>Inglés</b>
+          <div class="query">"Harry Potter" "identity construction"</div>
+          <div class="query">"Harry Potter" subjectivity identity</div>
+          <div class="query">"Harry Potter" "narrative identity"</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" target="_blank" href="https://scholar.google.com/scholar?q=%22Harry+Potter%22+%22construcci%C3%B3n+de+la+identidad%22">Buscar · construcción de identidad ↗</a>
+        <a class="btn secondary" target="_blank" href="https://scholar.google.com/scholar?q=%22Harry+Potter%22+%22narrative+identity%22">Buscar · narrative identity ↗</a>
+      </div>
+
+      <div class="note"><b>Decisión clave:</b> si una búsqueda produce resultados demasiado amplios, agregamos un concepto. Si produce casi ninguno, quitamos uno.</div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">4</div>
+    <div>
+      <h4>Identificar un texto crítico pertinente</h4>
+
+      <div class="result-path">
+        <h4>Ada Cristina Machado Silveira & Janayna Barros (2013)</h4>
+        <p><b>“Identidades narrativas em Harry Potter / Narrative identities in Harry Potter”</b></p>
+        <p><i>Comunicação & Inovação</i>, 14(27), 73–82.</p>
+      </div>
+
+      <p>El título introduce una expresión que todavía no estaba necesariamente en nuestra consigna: <b>identidad narrativa</b>. Ahora la búsqueda nos está enseñando un concepto nuevo.</p>
+
+      <div class="academic-check">
+        <div><b>¿Coincide con nuestro problema?</b><br>Sí: identidad + Harry Potter.</div>
+        <div><b>¿Es académico?</b><br>Sí: revista, autoras, referencias y DOI.</div>
+        <div><b>¿Parece útil?</b><br>Sí: estudia la construcción de identidad de Harry.</div>
+      </div>
+
+      <div class="actions">
+        <a class="btn link" target="_blank" href="https://seer.uscs.edu.br/index.php/revista_comunicacao_inovacao/pt_BR/article/view/2083">Abrir registro ↗</a>
+        <a class="btn link" target="_blank" href="https://seer.uscs.edu.br/index.php/revista_comunicacao_inovacao/pt_BR/article/download/2083/1431/7632">Abrir PDF ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">5</div>
+    <div>
+      <h4>Leer el resumen y extraer nuevas pistas</h4>
+      <p>Ahora no buscamos todavía otra fuente. Primero usamos el resumen para descubrir <b>qué teoría y qué autores aparecen detrás del concepto</b>.</p>
+
+      <div class="reading-strip">
+        <div><b>1. Objetivo</b><br>¿Qué analiza el artículo?</div>
+        <div><b>2. Conceptos</b><br>¿Qué categorías aparecen?</div>
+        <div><b>3. Autores</b><br>¿Qué teóricos se nombran?</div>
+        <div><b>4. Aplicación</b><br>¿Qué relación o escena analiza?</div>
+      </div>
+
+      <label class="field">
+        <span>¿Qué conceptos y autores aparecen en el resumen o marco teórico?</span>
+        <textarea data-save="search2" placeholder="Anota aquí los términos nuevos..."></textarea>
+      </label>
+
+      <div class="actions">
+        <button class="btn yellow" onclick="toggle('search2hint')">Pista</button>
+        <button class="btn secondary" onclick="toggle('search2sol')">Mostrar hallazgo clave</button>
+      </div>
+
+      <div id="search2hint" class="reveal hintbox">
+        Busca el nombre del autor que utilizan para desarrollar la noción de <b>identidad narrativa</b>.
+      </div>
+
+      <div id="search2sol" class="reveal solbox">
+        El artículo utiliza a <b>Paul Ricoeur</b> para trabajar la noción de identidad narrativa, especialmente en relación con temporalidad, alteridad y construcción del sí.
+      </div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">6</div>
+    <div>
+      <h4>La búsqueda abre una nueva búsqueda</h4>
+      <p>Ahora sí tenemos un nuevo problema: entender mejor la categoría teórica que apareció en el artículo crítico.</p>
+
+      <div class="question">
+        <div class="big">Nueva necesidad</div>
+        <p>¿Qué significa <b>identidad narrativa</b> y cómo puede ayudarnos a pensar permanencia y transformación de un personaje?</p>
+      </div>
+
+      <div class="keyword-box" style="margin-top:12px">
+        <div class="keyword-col">
+          <b>Español</b>
+          <div class="query">"identidad narrativa" literatura</div>
+          <div class="query">"identidad narrativa" personaje</div>
+          <div class="query">"identidad narrativa" Ricoeur</div>
+        </div>
+        <div class="keyword-col">
+          <b>Inglés</b>
+          <div class="query">"narrative identity" literature</div>
+          <div class="query">"narrative identity" character</div>
+          <div class="query">"narrative identity" Ricoeur</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" target="_blank" href="https://scholar.google.com/scholar?q=%22identidad+narrativa%22+literatura">Scholar · español ↗</a>
+        <a class="btn secondary" target="_blank" href="https://scholar.google.com/scholar?q=%22narrative+identity%22+literature">Scholar · inglés ↗</a>
+      </div>
+
+      <div class="note"><b>Observa lo que ocurrió:</b> Ricoeur no estaba en la consigna ni en nuestra primera búsqueda. Llegamos a él porque una fuente académica pertinente nos entregó una nueva palabra clave y un nuevo autor.</div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">7</div>
+    <div>
+      <h4>Seleccionar una fuente teórica</h4>
+
+      <div class="result-path">
+        <h4>Rolando Picos Bovio (2020)</h4>
+        <p><b>“Los caminos de la identidad en Paul Ricoeur: Hacia una hermenéutica del sí como identidad narrativa”</b></p>
+        <p><i>Devenires</i>, 21(41), 123–139.</p>
+      </div>
+
+      <p>Ahora este resultado tiene sentido porque responde a una necesidad que <b>surgió durante la búsqueda</b>.</p>
+
+      <div class="actions">
+        <a class="btn link" target="_blank" href="https://publicaciones.umich.mx/revistas/devenires/ojs/article/view/117/">Abrir registro ↗</a>
+        <a class="btn link" target="_blank" href="https://publicaciones.umich.mx/revistas/devenires/ojs/article/download/117/93">Abrir PDF ↗</a>
+      </div>
+
+      <div class="reading-strip">
+        <div><b>1. Título</b><br>¿Responde a la nueva necesidad?</div>
+        <div><b>2. Resumen</b><br>¿Qué plantea sobre identidad narrativa?</div>
+        <div><b>3. Buscar en PDF</b><br>“identidad narrativa”, “idem”, “ipse”.</div>
+        <div><b>4. Extraer una idea</b><br>¿Qué podremos usar en el análisis?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-step">
+    <div class="num">8</div>
+    <div>
+      <h4>Asignar una función a cada fuente</h4>
+
+      <label class="field">
+        <span>Silveira y Barros me servirá para…</span>
+        <textarea data-save="f2" placeholder="Esta fuente crítica me servirá para..."></textarea>
+      </label>
+
+      <label class="field">
+        <span>Picos Bovio me servirá para…</span>
+        <textarea data-save="f1" placeholder="Esta fuente teórica me servirá para..."></textarea>
+      </label>
+
+      <div class="actions">
+        <button class="btn yellow" onclick="toggle('sourcehint')">Pista</button>
+        <button class="btn secondary" onclick="toggle('sourcesol')">Mostrar modelo</button>
+        <button class="btn green" onclick="toggle('sourcecheck')">Comprobar</button>
+      </div>
+
+      <div id="sourcehint" class="reveal hintbox">
+        Una fuente puede servir para <b>mostrar cómo otro investigador analiza la obra</b>; la otra puede servir para <b>construir la categoría con la que nosotros analizaremos</b>.
+      </div>
+
+      <div id="sourcesol" class="reveal solbox">
+        <b>Silveira y Barros:</b> observar cómo otro estudio aplica la identidad narrativa al análisis de Harry y tomarlo como referencia para nuestro propio análisis.<br><br>
+        <b>Picos Bovio:</b> comprender y definir la identidad narrativa como una relación entre continuidad y transformación a lo largo del tiempo.
+      </div>
+
+      <div id="sourcecheck" class="reveal checkbox">
+        Antes de pasar a Planificación, Javier debería poder explicar:<br>
+        1. con qué palabras comenzó;<br>
+        2. qué palabras nuevas descubrió;<br>
+        3. cómo refinó la búsqueda;<br>
+        4. cómo comprobó que las fuentes eran académicas;<br>
+        5. y para qué usaría cada texto.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="card" style="background:#fbfafc">
+<h3>Mapa final de la búsqueda</h3>
+<table>
+<tr><th>Momento</th><th>Búsqueda / hallazgo</th><th>Qué cambia</th></tr>
+<tr><td>1</td><td><i>Harry Potter + identidad + personajes</i></td><td>Exploramos el campo.</td></tr>
+<tr><td>2</td><td>Aparecen términos como <i>identity construction</i> o <i>narrative identity</i></td><td>Descubrimos vocabulario académico.</td></tr>
+<tr><td>3</td><td><i>Harry Potter + narrative identity</i></td><td>Localizamos una fuente crítica pertinente.</td></tr>
+<tr><td>4</td><td>La fuente crítica menciona a Ricoeur</td><td>Aparece una nueva necesidad teórica.</td></tr>
+<tr><td>5</td><td><i>identidad narrativa + literatura / Ricoeur</i></td><td>Localizamos una fuente teórica.</td></tr>
+</table>
+<div class="note"><b>Aprendizaje que buscamos:</b> las palabras clave no siempre se conocen antes de investigar. Muchas veces se <b>descubren leyendo resultados pertinentes</b> y se convierten en nuevas rutas de búsqueda.</div>
+</div>
+</div>
+
+<nav class="route-nav"><span>Etapa 1 de 4</span><button class="btn green" onclick="go(1)">Planificación →</button></nav>
+</div>
+
+<!-- PLANIFICACION -->
+<div class="stage phase" id="phase1" style="display:none">
+<span class="pill">02 · Planificación</span>
+<h2>Ahora decidimos<br>qué queremos demostrar.</h2>
+<p class="lead">La planificación transforma el tema en una hipótesis y la hipótesis en una secuencia de argumentos.</p>
+<div class="card"><h3>1 · Formular una hipótesis</h3><label class="field"><span>Hipótesis interpretativa</span><textarea data-save="p1"></textarea></label><div class="actions"><button class="btn yellow" onclick="toggle('ph1')">Pista</button><button class="btn secondary" onclick="toggle('ps1')">Mostrar modelo</button><button class="btn green" onclick="toggle('pc1')">Comprobar</button></div><div id="ph1" class="reveal hintbox">No escribas “el ensayo tratará sobre…”. Formula una relación discutible entre herencia, pertenencia y elección.</div><div id="ps1" class="reveal solbox">La saga representa la identidad como una construcción tensionada entre herencia, pertenencia y elección: aunque los personajes reciben posiciones familiares e institucionales que los condicionan, sus trayectorias muestran que esas identidades se redefinen mediante las decisiones que toman.</div><div id="pc1" class="reveal checkbox">¿Tu hipótesis contiene una posición discutible, relaciona las tres dimensiones y permite derivar más de un argumento?</div></div>
+<div class="card"><h3>2 · Derivar argumentos</h3><div class="grid3"><label class="field"><span>Argumento 1</span><textarea data-save="arg1"></textarea></label><label class="field"><span>Argumento 2</span><textarea data-save="arg2"></textarea></label><label class="field"><span>Argumento 3</span><textarea data-save="arg3"></textarea></label></div><div class="actions"><button class="btn yellow" onclick="toggle('ph2')">Pista</button><button class="btn secondary" onclick="toggle('ps2')">Mostrar ruta</button><button class="btn green" onclick="toggle('pc2')">Comprobar</button></div><div id="ph2" class="reveal hintbox">¿Qué hace la herencia? ¿Qué hace la pertenencia? ¿Qué hace la elección?</div><div id="ps2" class="reveal solbox">1. La herencia condiciona, pero no determina.<br>2. Las instituciones y grupos ofrecen identidades de pertenencia.<br>3. Las decisiones permiten reproducir, tensionar o romper identidades recibidas.</div><div id="pc2" class="reveal checkbox">Cada argumento debe ser una razón que sostenga la hipótesis, no el nombre de un personaje.</div></div>
+<div class="card"><h3>3 · Arquitectura del ensayo</h3>
+<div class="arch"><div class="name">Introducción</div><div><textarea data-save="m1a" placeholder="Qué debe hacer"></textarea></div><div><textarea data-save="m1b" placeholder="Para qué sirve"></textarea></div></div>
+<div class="arch"><div class="name">Movimiento 1</div><div><textarea data-save="m2a"></textarea></div><div><textarea data-save="m2b"></textarea></div></div>
+<div class="arch"><div class="name">Movimiento 2</div><div><textarea data-save="m3a"></textarea></div><div><textarea data-save="m3b"></textarea></div></div>
+<div class="arch"><div class="name">Movimiento 3</div><div><textarea data-save="m4a"></textarea></div><div><textarea data-save="m4b"></textarea></div></div>
+<div class="arch"><div class="name">Conclusión</div><div><textarea data-save="m5a"></textarea></div><div><textarea data-save="m5b"></textarea></div></div>
+<div class="actions"><button class="btn yellow" onclick="toggle('ph3')">Pista</button><button class="btn secondary" onclick="toggle('ps3')">Mostrar modelo</button></div>
+<div id="ph3" class="reveal hintbox">Pregunta: ¿qué tiene que lograr esta parte para que el lector avance hacia mi conclusión?</div>
+<div id="ps3" class="reveal solbox"><table><tr><th>Movimiento</th><th>Qué hace</th><th>Para qué</th></tr><tr><td>Introducción</td><td>Presenta problema y formula hipótesis.</td><td>Orientar.</td></tr><tr><td>1</td><td>Herencia como condicionamiento.</td><td>Establecer punto de partida.</td></tr><tr><td>2</td><td>Pertenencias sociales e institucionales.</td><td>Mostrar dimensión relacional.</td></tr><tr><td>3</td><td>Decisiones y rupturas.</td><td>Mostrar transformación y agencia.</td></tr><tr><td>Conclusión</td><td>Integra hallazgos.</td><td>Responder la consigna.</td></tr></table></div>
+</div>
+<nav class="route-nav"><button class="btn secondary" onclick="go(0)">← Acceso</button><span>Etapa 2 de 4</span><button class="btn green" onclick="go(2)">Escritura →</button></nav>
+</div>
+
+<!-- ESCRITURA -->
+<div class="stage phase" id="phase2" style="display:none">
+<span class="pill">03 · Escritura</span>
+<h2>Escribir un tramo,<br>no todo el ensayo.</h2>
+<p class="lead">Vamos a desarrollar un párrafo para comprobar si la planificación realmente funciona.</p>
+<div class="card"><h3>1 · Preparar el párrafo</h3><div class="grid2"><label class="field"><span>Afirmación</span><textarea data-save="w1"></textarea></label><label class="field"><span>Evidencia literaria</span><textarea data-save="w2"></textarea></label><label class="field"><span>¿Qué demuestra?</span><textarea data-save="w3"></textarea></label><label class="field"><span>Función de una fuente</span><textarea data-save="w4"></textarea></label></div><div class="actions"><button class="btn yellow" onclick="toggle('wh1')">Pista</button><button class="btn secondary" onclick="toggle('ws1')">Mostrar ejemplo</button></div><div id="wh1" class="reveal hintbox">Afirmación → evidencia → análisis → fuente → vínculo con hipótesis.</div><div id="ws1" class="reveal solbox"><b>Afirmación:</b> la herencia condiciona, pero no determina la identidad.<br><b>Evidencia:</b> contraste entre Draco y Sirius.<br><b>Análisis:</b> ambos reciben expectativas familiares fuertes, pero responden de manera distinta.<br><b>Fuente:</b> la identidad narrativa permite pensar permanencias y transformaciones.</div></div>
+<div class="card"><h3>2 · Redactar</h3><label class="field"><span>Párrafo argumentativo</span><textarea data-save="wpara" style="min-height:230px"></textarea></label><div class="actions"><button class="btn yellow" onclick="toggle('wh2')">Pista</button><button class="btn secondary" onclick="toggle('ws2')">Mostrar modelo</button><button class="btn green" onclick="toggle('wc2')">Comprobar</button></div><div id="wh2" class="reveal hintbox">Si te bloqueas, redacta cinco frases independientes: afirmación, evidencia, análisis, fuente y vínculo. Luego únelas.</div><div id="ws2" class="reveal solbox">La saga presenta la herencia familiar como un condicionamiento importante de la identidad, pero no como un destino inevitable. Draco y Sirius reciben de sus familias posiciones y expectativas que anteceden a sus propias decisiones. Sin embargo, sus trayectorias divergen: Sirius rompe explícitamente con los valores de los Black, mientras Draco mantiene durante gran parte de la saga una relación más ambigua con las expectativas de los Malfoy. Esta diferencia permite observar que el origen familiar delimita posibilidades y presiones, pero no determina completamente la identidad. Desde la noción de identidad narrativa, esta tensión puede leerse como una relación entre aquello que permanece y aquello que se transforma a lo largo de una trayectoria. De este modo, la herencia funciona como un punto de partida frente al cual cada personaje debe posicionarse.</div><div id="wc2" class="reveal checkbox">¿Dónde afirmas? ¿Dónde presentas evidencia? ¿Dónde la analizas? ¿Qué hace la fuente? ¿Dónde vuelves a la hipótesis?</div></div>
+<nav class="route-nav"><button class="btn secondary" onclick="go(1)">← Planificación</button><span>Etapa 3 de 4</span><button class="btn green" onclick="go(3)">Revisión →</button></nav>
+</div>
+
+<!-- REVISION -->
+<div class="stage phase" id="phase3" style="display:none">
+<span class="pill">04 · Revisión</span>
+<h2>Revisar es volver<br>a tomar decisiones.</h2>
+<p class="lead">No revisaremos solo ortografía: comprobaremos si el párrafo cumple el propósito que definimos.</p>
+<div class="card"><h3>Revisión estratégica</h3>
+<div class="check-row"><label><input type="checkbox" data-check="r1">El párrafo sostiene una idea interpretativa y no se limita a describir.</label></div>
+<div class="check-row"><label><input type="checkbox" data-check="r2">La evidencia seleccionada realmente sostiene la afirmación.</label></div>
+<div class="check-row"><label><input type="checkbox" data-check="r3">La evidencia está analizada y no “habla por sí sola”.</label></div>
+<div class="check-row"><label><input type="checkbox" data-check="r4">Puedo explicar para qué uso una fuente académica.</label></div>
+<div class="check-row"><label><input type="checkbox" data-check="r5">El párrafo ayuda a demostrar la hipótesis general.</label></div>
+<label class="field"><span>¿Qué cambiarías después de revisar?</span><textarea data-save="rev1"></textarea></label>
+<div class="actions"><button class="btn yellow" onclick="toggle('rh1')">Pista</button><button class="btn green" onclick="checkReview()">Comprobar revisión</button></div>
+<div id="rh1" class="reveal hintbox">Identifica una decisión de contenido y una decisión de organización que mejorarías.</div><div id="revR" class="reveal checkbox"></div>
+</div>
+<div class="insight"><b>Transferencia</b><br>Acceso: comprendo la tarea y reúno recursos. · Planificación: decido qué sostendré. · Escritura: desarrollo evidencia y análisis. · Revisión: compruebo si el texto cumple su propósito.</div>
+<nav class="route-nav"><button class="btn secondary" onclick="go(2)">← Escritura</button><span>Etapa 4 de 4</span><button class="btn green" onclick="go(0)">Volver al inicio ↻</button></nav>
+</div>
+</section>
+</div>
+
+<footer class="footer">Mentoría académica · Fortalecimiento Académico · Unidad de Trayectoria Estudiantil</footer>
+</div>
+
+<div class="teacher"><div class="teacherbox" id="teacherbox"><b>Modo docente</b><p style="font-size:12px;color:var(--muted)">Para acelerar la mediación durante la sesión.</p><button class="btn secondary" style="width:100%;margin:4px 0" onclick="showAll()">Mostrar resoluciones</button><button class="btn secondary" style="width:100%;margin:4px 0" onclick="hideAll()">Ocultar apoyos</button><button class="btn secondary" style="width:100%;margin:4px 0" onclick="resetAll()">Reiniciar respuestas</button></div><button class="fab" onclick="document.getElementById('teacherbox').classList.toggle('show')">Modo docente</button></div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+
+<script>
+let current=0;
+const phases=[0,1,2,3];
+
+/* ──────────────────────────────────────────────────────────
+   FIREBASE · mismo proyecto institucional usado en plataformas previas
+   ────────────────────────────────────────────────────────── */
+const FIREBASE_CONFIG={
+  apiKey:"AIzaSyCTMsAAvTOt7IRXvXRlZGgoYk4knccHpa4",
+  authDomain:"trayectoria-2026.firebaseapp.com",
+  databaseURL:"https://trayectoria-2026-default-rtdb.firebaseio.com",
+  projectId:"trayectoria-2026",
+  storageBucket:"trayectoria-2026.firebasestorage.app",
+  messagingSenderId:"963939528799",
+  appId:"1:963939528799:web:dc462d7717bc0e7df5abea"
+};
+
+let fbApp=null,fbAuth=null,fbDb=null,fbUser=null;
+let cloudReady=false,applyingRemote=false,pendingCloudSave=null,cloudRef=null;
+const LOCAL_KEY='mentoriaJavierProcesoEscrituraV5';
+
+function cloudPath(){
+  return fbUser ? 'users/'+fbUser.uid+'/mentorias/javier/procesoEscritura/state' : null;
+}
+function setSyncStatus(text,mode=''){
+  const el=document.getElementById('syncStatus');
+  if(!el)return;
+  el.textContent=text;
+  el.className='sync-pill'+(mode?' '+mode:'');
+}
+function showLoginError(msg){
+  const el=document.getElementById('loginError');
+  if(!el)return;
+  el.textContent=msg;
+  el.classList.add('show');
+}
+function clearLoginError(){
+  const el=document.getElementById('loginError');
+  if(el){el.textContent='';el.classList.remove('show')}
+}
+function initFirebase(){
+  try{
+    if(typeof firebase==='undefined')throw new Error('No se pudo cargar Firebase.');
+    fbApp=firebase.apps?.length ? firebase.app() : firebase.initializeApp(FIREBASE_CONFIG);
+    fbAuth=firebase.auth();
+    fbDb=firebase.database();
+    return true;
+  }catch(err){
+    console.error('Firebase init:',err);
+    setSyncStatus('Error Firebase','error');
+    showLoginError('No se pudo iniciar Firebase. Revisa la conexión a internet y vuelve a cargar la página.');
+    return false;
+  }
+}
+function collectState(){
+  const answers={};
+  document.querySelectorAll('[data-save]').forEach(el=>answers[el.dataset.save]=el.value||'');
+  const checks={};
+  document.querySelectorAll('[data-check]').forEach(el=>checks[el.dataset.check]=!!el.checked);
+  return {
+    student:'Javier',
+    activity:'Proceso de escritura · análisis literario Harry Potter',
+    phase:current,
+    answers,
+    checks,
+    _meta:{
+      updatedAt:new Date().toISOString(),
+      updatedBy:fbUser?.email||'',
+      version:'mentoriaJavierProcesoEscrituraV5'
+    }
+  };
+}
+function applyState(state){
+  if(!state)return;
+  applyingRemote=true;
+  const answers=state.answers||{};
+  document.querySelectorAll('[data-save]').forEach(el=>{
+    if(Object.prototype.hasOwnProperty.call(answers,el.dataset.save)){
+      el.value=answers[el.dataset.save]??'';
+    }
+  });
+  const checks=state.checks||{};
+  document.querySelectorAll('[data-check]').forEach(el=>{
+    if(Object.prototype.hasOwnProperty.call(checks,el.dataset.check)){
+      el.checked=!!checks[el.dataset.check];
+    }
+  });
+  if(Number.isInteger(state.phase)&&phases.includes(state.phase)){
+    go(state.phase,false);
+  }
+  localStorage.setItem(LOCAL_KEY,JSON.stringify(state));
+  applyingRemote=false;
+}
+function loadLocalBackup(){
+  try{
+    const raw=localStorage.getItem(LOCAL_KEY);
+    return raw?JSON.parse(raw):null;
+  }catch(_){return null}
+}
+function saveLocalBackup(){
+  if(applyingRemote)return;
+  try{localStorage.setItem(LOCAL_KEY,JSON.stringify(collectState()))}catch(_){}
+}
+function cloudSaveNow(){
+  if(!cloudReady||!fbDb||!fbUser||applyingRemote)return Promise.resolve();
+  const payload=collectState();
+  saveLocalBackup();
+  setSyncStatus('Guardando…','saving');
+  return fbDb.ref(cloudPath()).set(payload)
+    .then(()=>setSyncStatus('Guardado en Firebase','cloud'))
+    .catch(err=>{
+      console.error('Firebase save:',err);
+      setSyncStatus('Error al guardar','error');
+    });
+}
+function scheduleCloudSave(){
+  if(applyingRemote)return;
+  saveLocalBackup();
+  if(!cloudReady)return;
+  clearTimeout(pendingCloudSave);
+  setSyncStatus('Guardando…','saving');
+  pendingCloudSave=setTimeout(cloudSaveNow,450);
+}
+function attachCloudState(){
+  if(!fbDb||!fbUser)return;
+  if(cloudRef)cloudRef.off();
+  cloudRef=fbDb.ref(cloudPath());
+  setSyncStatus('Cargando nube…','saving');
+  cloudRef.on('value',snap=>{
+    const remote=snap.val();
+    if(remote){
+      applyState(remote);
+      setSyncStatus('Sincronizado','cloud');
+    }else{
+      const local=loadLocalBackup();
+      if(local){
+        applyState(local);
+      }
+      cloudSaveNow().then(()=>setSyncStatus('Primer respaldo creado','cloud'));
+    }
+  },err=>{
+    console.error('Firebase read:',err);
+    setSyncStatus('Error de permisos','error');
+    showLoginError('Firebase no permitió leer o escribir esta ruta. Revisa las reglas de Realtime Database.');
+  });
+}
+function loginGoogle(){
+  clearLoginError();
+  if(!fbAuth){
+    showLoginError('Firebase todavía no está disponible.');
+    return;
+  }
+  const provider=new firebase.auth.GoogleAuthProvider();
+  fbAuth.signInWithPopup(provider).catch(err=>{
+    console.error('Google login:',err);
+    let msg='No se pudo iniciar sesión con Google.';
+    if(err?.code==='auth/unauthorized-domain')msg='Este dominio no está autorizado en Firebase Authentication. Agrégalo en Authentication → Settings → Authorized domains.';
+    if(err?.code==='auth/popup-blocked')msg='El navegador bloqueó la ventana de inicio de sesión. Habilita ventanas emergentes e inténtalo nuevamente.';
+    showLoginError(msg);
+  });
+}
+function logoutFirebase(){
+  if(cloudRef)cloudRef.off();
+  cloudReady=false;
+  if(fbAuth)fbAuth.signOut();
+}
+function bootFirebaseAuth(){
+  if(!initFirebase())return;
+  fbAuth.onAuthStateChanged(user=>{
+    fbUser=user||null;
+    const login=document.getElementById('loginScreen');
+    const chip=document.getElementById('userChip');
+    if(user){
+      cloudReady=true;
+      clearLoginError();
+      login?.classList.add('hidden');
+      chip?.classList.add('show');
+      const name=user.displayName||user.email||'Usuario';
+      const label=document.getElementById('userLabel');
+      const avatar=document.getElementById('userAvatar');
+      if(label)label.textContent=name;
+      if(avatar)avatar.textContent=name.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
+      attachCloudState();
+    }else{
+      cloudReady=false;
+      setSyncStatus('Inicia sesión');
+      chip?.classList.remove('show');
+      login?.classList.remove('hidden');
+    }
+  });
+}
+
+/* ── Navegación y estado de la actividad ── */
+function go(n,save=true){
+  current=n;
+  document.querySelectorAll('.phase').forEach((x,i)=>x.style.display=i===n?'block':'none');
+  document.querySelectorAll('.stepitem').forEach((x,i)=>x.classList.toggle('active',i===n));
+  const p=document.getElementById('progress');
+  if(p)p.style.width=((n+1)*25)+'%';
+  if(save)scheduleCloudSave();
+  const main=document.querySelector('.main');
+  if(main)window.scrollTo({top:main.offsetTop-10,behavior:'smooth'});
+}
+function toggle(id){
+  document.getElementById(id)?.classList.toggle('show');
+}
+function showAll(){
+  document.querySelectorAll('.solbox').forEach(x=>x.classList.add('show'));
+  document.getElementById('teacherbox')?.classList.remove('show');
+}
+function hideAll(){
+  document.querySelectorAll('.reveal').forEach(x=>x.classList.remove('show'));
+  document.getElementById('teacherbox')?.classList.remove('show');
+}
+function checkReview(){
+  const b=[...document.querySelectorAll('[data-check]')];
+  const n=b.filter(x=>x.checked).length;
+  const e=document.getElementById('revR');
+  e.classList.add('show');
+  e.innerHTML='<b>'+n+'/5 criterios.</b> '+(n===5?'El párrafo cumple los cinco criterios. Ahora puedes revisar precisión y claridad.':'Usa los criterios no marcados para decidir qué revisar primero.');
+  scheduleCloudSave();
+}
+function resetAll(){
+  if(!confirm('¿Borrar las respuestas de esta mentoría? El cambio también se guardará en Firebase.'))return;
+  applyingRemote=true;
+  document.querySelectorAll('[data-save]').forEach(el=>el.value='');
+  document.querySelectorAll('[data-check]').forEach(el=>el.checked=false);
+  applyingRemote=false;
+  current=0;
+  go(0,false);
+  localStorage.removeItem(LOCAL_KEY);
+  cloudSaveNow();
+}
+
+/* Guardado automático de cada respuesta */
+document.querySelectorAll('[data-save]').forEach(el=>{
+  el.addEventListener('input',scheduleCloudSave);
+  el.addEventListener('change',scheduleCloudSave);
+});
+document.querySelectorAll('[data-check]').forEach(el=>{
+  el.addEventListener('change',scheduleCloudSave);
+});
+
+/* Copia local inicial, solo hasta que Firebase determine el estado */
+const localBeforeAuth=loadLocalBackup();
+if(localBeforeAuth)applyState(localBeforeAuth); else go(0,false);
+
+bootFirebaseAuth();
+</script>
+</body></html>
